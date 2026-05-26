@@ -1,21 +1,18 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Nanum_Gothic } from "next/font/google";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const nanumGothic = Nanum_Gothic({
+  variable: "--font-nanum",
   subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+  weight: ["400", "700", "800"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "Som D. Kim | Data & AI PM",
+  title: "Dasom Kim | Data & AI",
   description:
-    "데이터 분석 7년, AI PM 2년. 인사이트를 제품과 비즈니스 가치로 연결합니다.",
+    "데이터 분석 7년, AI PoC 2년. 데이터 뒤의 맥락을 읽고 사용자와 비즈니스를 연결하는 AI를 설계합니다.",
 };
 
 export default function RootLayout({
@@ -24,11 +21,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="ko"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
-    >
-      <body className="min-h-full flex flex-col">{children}</body>
+    <html lang="ko" className={`${nanumGothic.variable} h-full antialiased`}>
+      <body className="min-h-full flex flex-col font-sans">{children}</body>
     </html>
   );
 }

@@ -1,0 +1,101 @@
+export type WorkDetailSection = {
+  title: string;
+  label: string;
+  items: string[];
+};
+
+export type WorkDetailHero = {
+  src: string;
+  alt: string;
+  /** "gif"면 img에 unoptimized 등 표시용 힌트만 사용 (실제 파일은 .gif/.webp 등) */
+  mediaType?: "image" | "gif";
+  caption?: string;
+};
+
+export type WorkDetail = {
+  id: string;
+  period: string;
+  title: string;
+  summary: string;
+  tags: string[];
+  hero?: WorkDetailHero;
+  overview: string;
+  sections: WorkDetailSection[];
+};
+
+export const WORK_DETAILS: Record<string, WorkDetail> = {
+  "poc-08": {
+    id: "poc-08",
+    period: "2024",
+    title: "AI 기반 모의 면접 시스템",
+    summary:
+      "직무·경력 맞춤 면접 질문 생성, 답변 분석, 개선 피드백 제공.",
+    tags: ["LLM", "PoC"],
+    hero: {
+      src: "/works/poc-08-hero.png",
+      alt: "AI 모의 면접 시스템 데모 화면 — 질문 생성 및 STAR 기반 피드백 UI",
+      mediaType: "image",
+      caption: "데모 UI 예시 · 실제 GIF로 교체 가능",
+    },
+    overview:
+      "채용 공고와 지원자 이력을 입력하면 직무·경력에 맞는 면접 질문을 생성하고, 답변을 구조화해 분석한 뒤 개선 포인트를 제안하는 모의 면접 PoC입니다. 실제 면접관이 보는 관점(논리성, 직무 적합성, 표현력)을 기준으로 피드백 루브릭을 설계해, 반복 연습이 가능한 흐름까지 검증했습니다.",
+    sections: [
+      {
+        label: "01",
+        title: "Problem",
+        items: [
+          "면접 준비는 질문 예측과 답변 구조화가 핵심인데, 개인 연습만으로는 실전과 유사한 질문·꼬리 질문을 만들기 어렵습니다.",
+          "범용 면접 질문 리스트는 직무·경력 맥락이 빠져, 지원자가 자신의 강점을 설득력 있게 말하는 연습에 한계가 있습니다.",
+          "답변 후 즉시 받을 수 있는 구조화된 피드백이 없으면, 같은 실수를 반복하거나 개선 방향을 잡기 어렵습니다.",
+        ],
+      },
+      {
+        label: "02",
+        title: "Role & Scope",
+        items: [
+          "요구사항 정의, 면접 시나리오·평가 기준 설계, 프롬프트·응답 파이프라인 구성, 데모 UI 연동까지 PoC 전 과정을 담당했습니다.",
+          "PoC 범위: 텍스트 기반 모의 면접(음성 STT/TTS는 후속 과제), 단일 사용자 세션, 공고·이력서 텍스트 입력 방식.",
+          "실제 채용 연동·개인정보 장기 저장·다면 면접 시뮬레이션은 범위에서 제외했습니다.",
+        ],
+      },
+      {
+        label: "03",
+        title: "Approach",
+        items: [
+          "채용 공고(JD)와 이력서에서 직무 키워드·경력 하이라이트를 추출해, 기술·경험·상황(Situation) 유형 질문을 단계적으로 생성합니다.",
+          "지원자 답변을 STAR(상황·과제·행동·결과) 관점으로 파싱하고, 누락·모호한 부분을 꼬리 질문 후보로 제안합니다.",
+          "평가 루브릭(직무 적합성, 논리 구조, 구체성, 표현력)에 따라 점수·코멘트·개선 예시 문장을 함께 반환해 학습 가능한 피드백을 제공합니다.",
+          "질문·평가·피드백을 별도 프롬프트 체인으로 분리해, 단계별 품질을 조정하고 환각(근거 없는 평가)을 줄였습니다.",
+        ],
+      },
+      {
+        label: "04",
+        title: "Tech Stack",
+        items: [
+          "LLM API · 프롬프트 체인(질문 생성 / 답변 분석 / 피드백)",
+          "Python · FastAPI — 세션·턴 관리, API 엔드포인트",
+          "React — 모의 면접 진행·결과 화면(데모 UI)",
+          "평가 루브릭 JSON 스키마 · 구조화 출력 파싱",
+        ],
+      },
+      {
+        label: "05",
+        title: "Outcome",
+        items: [
+          "IT·데이터 직무 기준 시나리오 다수로 엔드투엔드 데모 완료(질문 생성 → 답변 → 피드백).",
+          "꼬리 질문·STAR 기반 피드백이 면접 연습 목적에 맞게 동작함을 내부 검증했습니다.",
+          "평가 항목을 루브릭으로 고정해 피드백 일관성을 확보했고, 프롬프트·기준 문구 튜닝 가이드를 정리했습니다.",
+          "후속: 음성 인터뷰, 면접관 페르소나, 과거 답변 비교·학습 이력 저장, 기업별 질문 뱅크 연동.",
+        ],
+      },
+    ],
+  },
+};
+
+export function getWorkDetail(id: string): WorkDetail | undefined {
+  return WORK_DETAILS[id];
+}
+
+export function getAllWorkDetailIds(): string[] {
+  return Object.keys(WORK_DETAILS);
+}
