@@ -27,11 +27,44 @@ function parseBulletItems(body: string): string[] {
     .filter(Boolean);
 }
 
+const GALLERY_EXTENSIONS = ["gif", "webp", "png", "jpg", "jpeg"] as const;
+
+function galleryFileExists(galleryId: string, index: number): boolean {
+  const baseName = `${galleryId}-${index}`;
+  const worksDir = path.join(process.cwd(), "public/works");
+
+  return GALLERY_EXTENSIONS.some((ext) =>
+    fs.existsSync(path.join(worksDir, `${baseName}.${ext}`)),
+  );
+}
+
+function resolveGallerySrc(galleryId: string, index: number): string {
+  const baseName = `${galleryId}-${index}`;
+  const worksDir = path.join(process.cwd(), "public/works");
+
+  for (const ext of GALLERY_EXTENSIONS) {
+    const filePath = path.join(worksDir, `${baseName}.${ext}`);
+    if (fs.existsSync(filePath)) {
+      return `/works/${baseName}.${ext}`;
+    }
+  }
+
+  return `/works/${baseName}.png`;
+}
+
+/** public/works 에 실제 있는 번호만 사용 (4번 없이 5번만 있어도 OK) */
 function dataGallery(galleryId: string): DataDetailMedia[] {
-  return [1, 2, 3, 4, 5].map((n) => ({
-    src: `/works/${galleryId}-${n}.png`,
-    alt: `데모 ${n}`,
-  }));
+  const slides: DataDetailMedia[] = [];
+
+  for (let n = 1; n <= 10; n++) {
+    if (!galleryFileExists(galleryId, n)) continue;
+    slides.push({
+      src: resolveGallerySrc(galleryId, n),
+      alt: `데모 ${slides.length + 1}`,
+    });
+  }
+
+  return slides;
 }
 
 function parseMarkdownFile(filePath: string): DataWorkDetail | null {

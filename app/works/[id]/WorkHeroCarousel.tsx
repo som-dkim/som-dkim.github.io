@@ -25,7 +25,7 @@ export function WorkHeroCarousel({ slides, caption }: WorkHeroCarouselProps) {
 
   return (
     <figure className="mt-10">
-      <div className="relative overflow-hidden rounded-2xl border border-black/10 bg-neutral-100 shadow-sm">
+      <div className="relative overflow-hidden rounded-2xl border border-black/10 bg-neutral-50 shadow-sm">
         <div
           className="flex transition-transform duration-300 ease-out"
           style={{ transform: `translateX(-${index * 100}%)` }}
@@ -37,7 +37,7 @@ export function WorkHeroCarousel({ slides, caption }: WorkHeroCarouselProps) {
               alt={item.alt}
               width={1200}
               height={675}
-              className="aspect-video w-full shrink-0 object-cover object-top"
+              className="h-auto max-h-[min(70vh,36rem)] w-full shrink-0 object-contain p-2 sm:p-3"
               loading={item === slide ? "eager" : "lazy"}
               decoding="async"
             />
