@@ -275,11 +275,6 @@ export default function Home() {
                 <p className="text-[0.9375rem] leading-[1.85] text-neutral-800">
                   <span className="mr-2 text-neutral-300">—</span>
                   {highlightDescription(item.description)}
-                  {"aside" in item && item.aside ? (
-                    <span className="ml-2 text-sm font-normal text-neutral-400">
-                      {item.aside}
-                    </span>
-                  ) : null}
                 </p>
                 {item.href ? (
                   <a href={item.href} className="more-cta sm:ml-auto">
