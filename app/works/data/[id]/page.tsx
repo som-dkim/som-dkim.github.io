@@ -111,7 +111,10 @@ export default async function DataWorkDetailPage({ params }: PageProps) {
         </p>
 
         {work.gallery && work.gallery.length > 0 ? (
-          <WorkHeroCarousel slides={work.gallery} caption="분석·지도 산출물" />
+          <WorkHeroCarousel
+            slides={work.gallery}
+            caption={work.galleryCaption}
+          />
         ) : null}
       </div>
 

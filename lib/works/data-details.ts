@@ -24,6 +24,8 @@ export type DataWorkDetail = {
   summary: string;
   tags: string[];
   gallery?: DataDetailMedia[];
+  /** 캐러셀 하단 캡션 (비우면 미표시) */
+  galleryCaption?: string;
   overview: string;
   sections: DataDetailSection[];
   /** works 페이지 회사 블록 앵커 id */

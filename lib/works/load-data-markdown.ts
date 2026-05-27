@@ -117,6 +117,10 @@ function parseMarkdownFile(filePath: string): DataWorkDetail | null {
     summary: String(data.summary),
     tags: Array.isArray(data.tags) ? data.tags.map(String) : [],
     gallery: dataGallery(galleryId),
+    galleryCaption:
+      typeof data.galleryCaption === "string" && data.galleryCaption.trim()
+        ? data.galleryCaption.trim()
+        : undefined,
     overview,
     sections,
   };

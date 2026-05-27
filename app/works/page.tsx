@@ -143,29 +143,29 @@ const DATA_EXPERIENCE: DataCompanyGroup[] = [
     focus: "상담 데이터 분석·시각화, 고객서비스실 분석 환경 구축",
     projects: [
       {
-        id: "data-kakao-cs-analytics",
+        id: "kkb01",
         title: "고객서비스 데이터 분석",
         period: "2022.07 — 2023.09",
         summary:
           "ETL·데이터마트·배치 전처리로 분석 환경을 구축하고, 상담센터 인입 데이터에서 키워드·동시출현·기간별 트렌드를 추적했습니다. 인입 상담 문의 예측과 기술연구소 생성형 AI 언어모델 협업을 지원했으며, 대시보드 시각화를 구축했습니다.",
         tags: ["SQL (Hive)", "Python", "ETL", "Tableau"],
-        href: null,
+        href: "/works/data/kkb01",
       },
       {
-        id: "data-kakao-metrics",
+        id: "kkb02",
         title: "고객서비스 지표 개발 및 관리",
         summary:
           "콜·톡·일대일 상담 주간 지표 통계를 운영하고 필요 지표를 개발·관리했습니다. 고객센터 요구 데이터 추출 및 시각화를 담당했습니다.",
         tags: ["Excel", "SQL (Hive)", "Tableau"],
-        href: null,
+        href: "/works/data/kkb02",
       },
       {
-        id: "data-kakao-reporting",
+        id: "kkb03",
         title: "고객서비스 분석 리포팅",
         summary:
           "고객서비스실 월간 인사이트 보고서와 Ad-Hoc 리포트를 발간했습니다.",
         tags: ["Excel", "SQL (Hive)", "PPT"],
-        href: null,
+        href: "/works/data/kkb03",
       },
     ],
   },
@@ -177,28 +177,28 @@ const DATA_EXPERIENCE: DataCompanyGroup[] = [
     focus: "데이터 분석 과제 수행 및 시스템 운영",
     projects: [
       {
-        id: "data-hyundai-doc-search",
+        id: "hae01",
         title: "사내 문서 검색 시스템 구축",
         summary:
           "파일럿·생산기술 분야 기술문서 검색 시스템을 구축하고, 운영 DB 파이프라인·정합성 관리, 사용자 모니터링 지표·성과 관리를 수행했습니다. 일배치 모니터링과 현업 요구사항 대응 등 시스템 운영·유지보수를 담당했습니다.",
         tags: ["Data Platform", "Pipeline", "Operations"],
-        href: null,
+        href: "/works/data/hae01",
       },
       {
-        id: "data-hyundai-segmentation",
+        id: "hae02",
         title: "고객 세그먼테이션 분석 고도화",
         summary:
           "자동차 행동 데이터 기반 GMM·DBSCAN·K-means 클러스터링으로 고객군 분류와 마켓 타겟층을 수립했습니다. 행동 유형 세분화·타겟 분류, 프로젝트 관리, 산출물 작성, 코드 최적화를 수행했습니다.",
         tags: ["Python", "Clustering", "PM"],
-        href: null,
+        href: "/works/data/hae02",
       },
       {
-        id: "data-hyundai-audit",
+        id: "hae03",
         title: "내부 감사 시스템 자동화 모델 개발",
         summary:
           "ERP 데이터 이상 징후 탐지를 위해 DBSCAN·회귀·SOM·계층 클러스터링 분석을 수행했습니다. 전 그룹사 자동화 플랫폼 모형에 탑재되는 성과를 냈습니다.",
         tags: ["Anomaly Detection", "ML", "ERP"],
-        href: null,
+        href: "/works/data/hae03",
       },
     ],
   },
@@ -210,20 +210,20 @@ const DATA_EXPERIENCE: DataCompanyGroup[] = [
     focus: "데이터 분석 및 정보서비스 기획",
     projects: [
       {
-        id: "data-ecredible-sentiment",
+        id: "ecr01",
         title: "뉴스 감성분석",
         summary:
           "형태소 분석·감성 사전 구축, 감성 지수·유사 문서 추천 지표를 개발하고 Word Cloud·Word Network로 시각화했습니다. 기술문서·서비스 명세서를 작성했고, 웹 서비스 출시·상용화에 기여했습니다.",
         tags: ["SQL", "Python", "R", "Product Launch"],
-        href: null,
+        href: "/works/data/ecr01",
       },
       {
-        id: "data-ecredible-keyword",
+        id: "ecr02",
         title: "산업별 키워드 이슈 트래킹",
         summary:
           "형태소 분석·TF-IDF·토픽 모델링으로 산업별 키워드 이슈를 추적하고, Word Cloud·Word Network·Qlik으로 시각화했습니다. 기술문서 및 프로젝트 보고서를 작성했습니다.",
         tags: ["Python", "SQL", "NLP", "Qlik"],
-        href: null,
+        href: "/works/data/ecr02",
       },
     ],
   },
@@ -235,13 +235,13 @@ const DATA_EXPERIENCE: DataCompanyGroup[] = [
     focus: "공공 빅데이터 프로젝트 수행 및 산출물 작성",
     projects: [
       {
-        id: "data-penta-daegu-ev",
+        id: "penta01",
         title: "대구시청 · 전기차 충전 인프라 입지 선정",
         period: "2017.07 — 2017.12",
         summary:
           "통신사 유동인구·도로 통행량·공공데이터를 활용해 상관관계·K-means·수요 예측 분석을 수행하고, QGIS 지리정보 분석과 실사를 거쳐 170개소 최종 입지를 선정했습니다. 2017 행정안전부 공공빅데이터 분석 우수사례집에 선정되었습니다.",
         tags: ["Spatial Analysis", "QGIS", "Public Sector"],
-        href: "/works/data/penta",
+        href: "/works/data/penta01",
       },
     ],
   },
