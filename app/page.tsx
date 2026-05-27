@@ -11,8 +11,7 @@ const NAV = [
 const CAREER = [
   {
     period: "2024 — Present",
-    description: "AI PoC 8건 수행 중",
-    aside: "(직장구하는중)",
+    description: "SK 네트웍스 AI부트캠프 멘토링 참여 AI PoC 8건 수행중",
     href: "/works#poc-01",
   },
   {
@@ -151,16 +150,6 @@ const SKILL_GROUPS = [
 export default function Home() {
   return (
     <div className="relative min-h-screen overflow-x-hidden bg-white text-neutral-900">
-      <div
-        className="pointer-events-none fixed inset-0 opacity-[0.04]"
-        style={{
-          backgroundImage:
-            "linear-gradient(#000 1px, transparent 1px), linear-gradient(90deg, #000 1px, transparent 1px)",
-          backgroundSize: "64px 64px",
-        }}
-        aria-hidden
-      />
-
       <header className="fixed top-0 z-50 w-full border-b border-black/10 bg-white/80 backdrop-blur-md">
         <div className="mx-auto flex h-16 max-w-5xl items-center justify-between px-6">
           <a href="#" className="wordmark text-black">

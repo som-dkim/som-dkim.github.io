@@ -1,0 +1,113 @@
+export type DataDetailSection = {
+  label: string;
+  title: string;
+  items: string[];
+};
+
+export type DataDetailMedia = {
+  src: string;
+  alt: string;
+};
+
+export type DataWorkDetail = {
+  id: string;
+  company: string;
+  department: string;
+  period: string;
+  projectPeriod?: string;
+  title: string;
+  summary: string;
+  tags: string[];
+  gallery?: DataDetailMedia[];
+  overview: string;
+  sections: DataDetailSection[];
+  /** works 페이지 회사 블록 앵커 id */
+  listAnchorId: string;
+};
+
+function dataGallery(dataId: string): DataDetailMedia[] {
+  return [1, 2, 3, 4, 5].map((n) => ({
+    src: `/works/${dataId}-${n}.png`,
+    alt: `데모 ${n}`,
+  }));
+}
+
+export const DATA_WORK_DETAILS: Record<string, DataWorkDetail> = {
+  penta: {
+    id: "penta",
+    listAnchorId: "data-penta",
+    company: "펜타시스템테크놀러지",
+    department: "빅데이터팀 / 연구원",
+    period: "2017.07 — 2018.02",
+    projectPeriod: "2017.07 — 2017.12",
+    title: "대구시청 · 전기차 충전 인프라 입지 선정",
+    summary:
+      "공공·통신·교통 데이터와 지리정보를 결합해 전기차 충전소 후보 입지를 분석·선정한 공공 빅데이터 프로젝트.",
+    tags: [
+      "Spatial Analysis",
+      "QGIS",
+      "K-means",
+      "Public Data",
+      "Python",
+    ],
+    gallery: dataGallery("data-penta"),
+    overview:
+      "대구광역시 전기차 보급 확대에 따라 충전 인프라를 어디에 우선 배치할지 의사결정 근거가 필요했습니다. 유동인구·도로 통행·공공데이터를 통합 분석하고, GIS 기반 후보지 도출과 현장 실사를 거쳐 최종 170개소 입지를 선정하는 과제였습니다. 분석 결과는 행정안전부 공공빅데이터 우수사례로도 선정되었습니다.",
+    sections: [
+      {
+        label: "01",
+        title: "Context",
+        items: [
+          "전기차 충전 인프라는 수요 예측·접근성·전력·토지 조건을 함께 고려해야 하는 공공 의사결정 과제입니다.",
+          "이해관계자(시청·시민·사업 주체)가 납득할 수 있는 객관적·정량적 근거와 시각화가 필요했습니다.",
+          "단기 PoC가 아닌, 실제 입지 선정까지 이어지는 분석·보고 프로젝트였습니다.",
+        ],
+      },
+      {
+        label: "02",
+        title: "Role",
+        items: [
+          "공공데이터·통신사 유동인구·도로 통행량 등 다원 데이터 수집·정제·분석을 수행했습니다.",
+          "상관관계 분석, K-means 클러스터링, 수요 예측 등 통계·공간 분석 모델을 적용했습니다.",
+          "QGIS 기반 지리정보 분석, 후보지 도출, 실사 지원, 최종 보고서·산출물 작성을 담당했습니다.",
+        ],
+      },
+      {
+        label: "03",
+        title: "Data & Analysis",
+        items: [
+          "통신사 유동인구, 도로별 통행량, 공공데이터를 결합해 수요·접근성 지표를 구성했습니다.",
+          "상관관계 분석으로 변수 간 관계를 검토하고, K-means로 공간·수요 패턴을 군집화했습니다.",
+          "수요 예측 분석으로 우선 배치가 필요한 권역을 식별했습니다.",
+          "QGIS에서 레이어를 중첩·시각화해 후보 입지를 단계적으로 좁혔습니다.",
+        ],
+      },
+      {
+        label: "04",
+        title: "Deliverables",
+        items: [
+          "분석 데이터셋, 지도·시각화 산출물, 입지 후보·우선순위 리스트.",
+          "프로젝트 중간·최종 보고서 및 행정안전부 우수사례 제출 자료.",
+          "현장 실사를 반영한 최종 170개소 입지 선정 결과.",
+        ],
+      },
+      {
+        label: "05",
+        title: "Impact",
+        items: [
+          "대구시 전기차 충전 인프라 확충 의사결정에 직접 활용되었습니다.",
+          "2017 행정안전부 주관 공공빅데이터 분석 우수사례집에 선정되었습니다.",
+          "공공 데이터 기반 공간·수요 분석 프로젝트의 레퍼런스로 활용 가능한 성과입니다.",
+        ],
+      },
+    ],
+  },
+};
+
+export function getDataWorkDetail(id: string): DataWorkDetail | undefined {
+  return DATA_WORK_DETAILS[id];
+}
+
+export function getAllDataWorkDetailIds(): string[] {
+  return Object.keys(DATA_WORK_DETAILS);
+}

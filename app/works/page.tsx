@@ -14,6 +14,7 @@ type WorkItem = {
   summary: string;
   tags: string[];
   highlights?: string[];
+  excellent?: boolean;
   href: string | null;
 };
 
@@ -44,7 +45,7 @@ const AI_POC_WORKS: WorkItem[] = [
     summary:
       "원작 서사·문체 유지와 타겟 언어·문화권에 맞춘 웹소설·시나리오 리라이팅.",
     tags: ["LLM", "PoC"],
-    href: null,
+    href: "/works/poc-01",
   },
   {
     id: "poc-02",
@@ -53,7 +54,8 @@ const AI_POC_WORKS: WorkItem[] = [
     summary:
       "여행자 선호·동선·주변 정보를 결합한 맞춤형 관광지·코스 추천.",
     tags: ["RAG", "PoC"],
-    href: null,
+    excellent: true,
+    href: "/works/poc-02",
   },
   {
     id: "poc-03",
@@ -62,7 +64,8 @@ const AI_POC_WORKS: WorkItem[] = [
     summary:
       "사내 KMS 연동 기반 질의 의도 분류, 문서 실시간 검색·요약·응답.",
     tags: ["Agent", "PoC"],
-    href: null,
+    excellent: true,
+    href: "/works/poc-03",
   },
   {
     id: "poc-04",
@@ -71,7 +74,7 @@ const AI_POC_WORKS: WorkItem[] = [
     summary:
       "경기 상황·선수·통계 반영 LLM 해설 멘트 실시간 생성.",
     tags: ["LLM", "PoC"],
-    href: null,
+    href: "/works/poc-04",
   },
   {
     id: "poc-05",
@@ -80,7 +83,7 @@ const AI_POC_WORKS: WorkItem[] = [
     summary:
       "스트리머 페르소나·말투·상담 시나리오 설계와 대화 일관성 유지.",
     tags: ["LLM", "Persona", "PoC"],
-    href: null,
+    href: "/works/poc-05",
   },
   {
     id: "poc-06",
@@ -89,7 +92,7 @@ const AI_POC_WORKS: WorkItem[] = [
     summary:
       "고객 문의 분류, FAQ·정책 기반 답변, 상담원 에스컬레이션 연계.",
     tags: ["LLM", "PoC"],
-    href: null,
+    href: "/works/poc-06",
   },
   {
     id: "poc-07",
@@ -98,7 +101,8 @@ const AI_POC_WORKS: WorkItem[] = [
     summary:
       "발명 요지·기술 포인트 입력 기반 특허 명세서 초안 구조와 문장 생성.",
     tags: ["LLM", "PoC"],
-    href: null,
+    excellent: true,
+    href: "/works/poc-07",
   },
   {
     id: "poc-08",
@@ -111,46 +115,135 @@ const AI_POC_WORKS: WorkItem[] = [
   },
 ];
 
-const DATA_WORKS: WorkItem[] = [
+type DataProject = {
+  id: string;
+  title: string;
+  period?: string;
+  summary: string;
+  tags: string[];
+  href?: string | null;
+};
+
+/** 회사(재직) 단위 + 하위 프로젝트 목록 — Data & Analytics 전용 */
+type DataCompanyGroup = {
+  id: string;
+  company: string;
+  period: string;
+  role: string;
+  focus: string;
+  projects: DataProject[];
+};
+
+const DATA_EXPERIENCE: DataCompanyGroup[] = [
   {
     id: "data-kakao",
-    period: "2022 — 2023",
-    title: "카카오뱅크 · 인입고객 트렌드 분석",
-    summary:
-      "대규모 인입 고객 데이터를 분석해 트렌드와 세그먼트 인사이트를 도출하고, 의사결정에 활용 가능한 리포트를 제공했습니다.",
-    tags: ["SQL", "Analytics", "Trend"],
-    highlights: ["카카오뱅크"],
-    href: null,
+    company: "카카오뱅크",
+    period: "2022.05 — 2023.09",
+    role: "고객서비스실 / 팀원",
+    focus: "상담 데이터 분석·시각화, 고객서비스실 분석 환경 구축",
+    projects: [
+      {
+        id: "data-kakao-cs-analytics",
+        title: "고객서비스 데이터 분석",
+        period: "2022.07 — 2023.09",
+        summary:
+          "ETL·데이터마트·배치 전처리로 분석 환경을 구축하고, 상담센터 인입 데이터에서 키워드·동시출현·기간별 트렌드를 추적했습니다. 인입 상담 문의 예측과 기술연구소 생성형 AI 언어모델 협업을 지원했으며, 대시보드 시각화를 구축했습니다.",
+        tags: ["SQL (Hive)", "Python", "ETL", "Tableau"],
+        href: null,
+      },
+      {
+        id: "data-kakao-metrics",
+        title: "고객서비스 지표 개발 및 관리",
+        summary:
+          "콜·톡·일대일 상담 주간 지표 통계를 운영하고 필요 지표를 개발·관리했습니다. 고객센터 요구 데이터 추출 및 시각화를 담당했습니다.",
+        tags: ["Excel", "SQL (Hive)", "Tableau"],
+        href: null,
+      },
+      {
+        id: "data-kakao-reporting",
+        title: "고객서비스 분석 리포팅",
+        summary:
+          "고객서비스실 월간 인사이트 보고서와 Ad-Hoc 리포트를 발간했습니다.",
+        tags: ["Excel", "SQL (Hive)", "PPT"],
+        href: null,
+      },
+    ],
   },
   {
     id: "data-hyundai",
-    period: "2020 — 2022",
-    title: "현대오토에버 · 그룹사 데이터 구축",
-    summary:
-      "그룹사 데이터 구축 프로젝트를 PM/SM으로 수행하며 요구사항 정리, 일정·품질 관리, 이해관계자 커뮤니케이션을 담당했습니다.",
-    tags: ["PM", "Data Platform", "Governance"],
-    highlights: ["현대오토에버"],
-    href: null,
+    company: "현대오토에버",
+    period: "2020.06 — 2022.05",
+    role: "빅데이터실 / 책임",
+    focus: "데이터 분석 과제 수행 및 시스템 운영",
+    projects: [
+      {
+        id: "data-hyundai-doc-search",
+        title: "사내 문서 검색 시스템 구축",
+        summary:
+          "파일럿·생산기술 분야 기술문서 검색 시스템을 구축하고, 운영 DB 파이프라인·정합성 관리, 사용자 모니터링 지표·성과 관리를 수행했습니다. 일배치 모니터링과 현업 요구사항 대응 등 시스템 운영·유지보수를 담당했습니다.",
+        tags: ["Data Platform", "Pipeline", "Operations"],
+        href: null,
+      },
+      {
+        id: "data-hyundai-segmentation",
+        title: "고객 세그먼테이션 분석 고도화",
+        summary:
+          "자동차 행동 데이터 기반 GMM·DBSCAN·K-means 클러스터링으로 고객군 분류와 마켓 타겟층을 수립했습니다. 행동 유형 세분화·타겟 분류, 프로젝트 관리, 산출물 작성, 코드 최적화를 수행했습니다.",
+        tags: ["Python", "Clustering", "PM"],
+        href: null,
+      },
+      {
+        id: "data-hyundai-audit",
+        title: "내부 감사 시스템 자동화 모델 개발",
+        summary:
+          "ERP 데이터 이상 징후 탐지를 위해 DBSCAN·회귀·SOM·계층 클러스터링 분석을 수행했습니다. 전 그룹사 자동화 플랫폼 모형에 탑재되는 성과를 냈습니다.",
+        tags: ["Anomaly Detection", "ML", "ERP"],
+        href: null,
+      },
+    ],
   },
   {
-    id: "data-credit",
-    period: "2018 — 2020",
-    title: "신용평가사 · 비재무 데이터 분석플랫폼",
-    summary:
-      "비재무 데이터 분석 플랫폼 상품 출시를 위해 데이터 모델링, 분석 로직, 상품화 프로세스를 end-to-end로 기획·실행했습니다.",
-    tags: ["Product Launch", "Platform", "Analytics"],
-    highlights: ["신용평가사"],
-    href: null,
+    id: "data-ecredible",
+    company: "이크레더블",
+    period: "2018.07 — 2020.02",
+    role: "정보전략팀 / 대리",
+    focus: "데이터 분석 및 정보서비스 기획",
+    projects: [
+      {
+        id: "data-ecredible-sentiment",
+        title: "뉴스 감성분석",
+        summary:
+          "형태소 분석·감성 사전 구축, 감성 지수·유사 문서 추천 지표를 개발하고 Word Cloud·Word Network로 시각화했습니다. 기술문서·서비스 명세서를 작성했고, 웹 서비스 출시·상용화에 기여했습니다.",
+        tags: ["SQL", "Python", "R", "Product Launch"],
+        href: null,
+      },
+      {
+        id: "data-ecredible-keyword",
+        title: "산업별 키워드 이슈 트래킹",
+        summary:
+          "형태소 분석·TF-IDF·토픽 모델링으로 산업별 키워드 이슈를 추적하고, Word Cloud·Word Network·Qlik으로 시각화했습니다. 기술문서 및 프로젝트 보고서를 작성했습니다.",
+        tags: ["Python", "SQL", "NLP", "Qlik"],
+        href: null,
+      },
+    ],
   },
   {
-    id: "data-daegu",
-    period: "2017 — 2018",
-    title: "대구광역시 · 전기차 충전소 입지 선정",
-    summary:
-      "전기차 충전소 입지 인프라 선정을 위한 데이터 분석을 수행하고, 공간·수요 기반 의사결정 근거를 마련했습니다.",
-    tags: ["Spatial Analysis", "Public Sector"],
-    highlights: ["대구광역시"],
-    href: null,
+    id: "data-penta",
+    company: "펜타시스템테크놀러지",
+    period: "2017.07 — 2018.02",
+    role: "빅데이터팀 / 연구원",
+    focus: "공공 빅데이터 프로젝트 수행 및 산출물 작성",
+    projects: [
+      {
+        id: "data-penta-daegu-ev",
+        title: "대구시청 · 전기차 충전 인프라 입지 선정",
+        period: "2017.07 — 2017.12",
+        summary:
+          "통신사 유동인구·도로 통행량·공공데이터를 활용해 상관관계·K-means·수요 예측 분석을 수행하고, QGIS 지리정보 분석과 실사를 거쳐 170개소 최종 입지를 선정했습니다. 2017 행정안전부 공공빅데이터 분석 우수사례집에 선정되었습니다.",
+        tags: ["Spatial Analysis", "QGIS", "Public Sector"],
+        href: "/works/data/penta",
+      },
+    ],
   },
 ];
 
@@ -241,7 +334,28 @@ type AchievementItem = {
   title: string;
   detail: string;
   period?: string;
+  href?: string | null;
 };
+
+const CREDENTIALS_LINE =
+  "M.S. · B.A. in Business Administration · B.S. in Statistics";
+
+const DOWNLOADS = [
+  {
+    id: "cv",
+    title: "CV",
+    format: "Word",
+    href: "/downloads/cv.docx",
+    downloadName: "Dasom-Kim-CV.docx",
+  },
+  {
+    id: "portfolio",
+    title: "Portfolio",
+    format: "PDF",
+    href: "/downloads/portfolio.pdf",
+    downloadName: "Dasom-Kim-Portfolio.pdf",
+  },
+] as const;
 
 const ACHIEVEMENTS: AchievementItem[] = [
   {
@@ -249,6 +363,7 @@ const ACHIEVEMENTS: AchievementItem[] = [
     category: "수상",
     title: "KCB 금융스타일 시각화경진대회",
     detail: "입상 (최종 9위)",
+    href: "https://dacon.io/competitions/official/82407/codeshare/1064",
   },
 ];
 
@@ -295,6 +410,17 @@ function highlightText(
   );
 }
 
+function ExcellentProjectBadge() {
+  return (
+    <li className="inline-flex items-center gap-1.5 border border-accent bg-accent px-3 py-1 text-[11px] font-bold tracking-wide text-white">
+      <span className="text-sm leading-none" aria-hidden>
+        🎖️
+      </span>
+      <span>우수프로젝트</span>
+    </li>
+  );
+}
+
 function MoreLink() {
   return (
     <span className="mt-6 flex justify-end border-t border-black/10 pt-5">
@@ -310,6 +436,76 @@ function isExternalHref(href: string) {
   return href.startsWith("http://") || href.startsWith("https://");
 }
 
+function DataExperienceList() {
+  return (
+    <ul className="divide-y divide-black/10 border-y border-black/10">
+      {DATA_EXPERIENCE.map((group) => (
+        <li key={group.id} id={group.id} className="scroll-mt-28 py-10">
+          <div className="grid gap-4 sm:grid-cols-[160px_1fr] sm:gap-12">
+            <time className="text-xs tracking-wide text-neutral-500 uppercase">
+              {formatPeriod(group.period)}
+            </time>
+            <div>
+              <h4 className="text-lg font-bold text-accent">{group.company}</h4>
+              <p className="mt-1 text-[0.8125rem] tracking-wide text-neutral-500">
+                {group.role}
+              </p>
+              <p className="mt-2 text-[0.9375rem] leading-[1.75] text-neutral-600">
+                {group.focus}
+              </p>
+            </div>
+          </div>
+
+          <ul className="mt-8 space-y-6 border-l-2 border-accent/20 pl-6 sm:ml-[172px]">
+            {group.projects.map((project) => (
+              <li key={project.id}>
+                <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+                  <div className="min-w-0 flex-1">
+                    <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+                      <h5 className="text-[0.9375rem] font-bold leading-snug text-black">
+                        {project.title}
+                      </h5>
+                      {project.period ? (
+                        <time className="text-[11px] tracking-wide text-neutral-400">
+                          {project.period}
+                        </time>
+                      ) : null}
+                    </div>
+                    <p className="mt-2 text-[0.9375rem] leading-[1.85] text-neutral-500">
+                      {project.summary}
+                    </p>
+                    <ul className="mt-3 flex flex-wrap gap-2">
+                      {project.tags.map((tag) => (
+                        <li
+                          key={tag}
+                          className="border border-accent/25 px-2.5 py-0.5 text-[10px] text-neutral-600"
+                        >
+                          {tag}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  {project.href ? (
+                    <Link href={project.href} className="more-cta shrink-0">
+                      <span>more</span>
+                      <span aria-hidden>→</span>
+                    </Link>
+                  ) : (
+                    <span className="more-cta shrink-0 opacity-40">
+                      <span>more</span>
+                      <span aria-hidden>→</span>
+                    </span>
+                  )}
+                </div>
+              </li>
+            ))}
+          </ul>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
 function WorkCard({ item }: { item: WorkItem }) {
   const inner = (
     <>
@@ -323,6 +519,7 @@ function WorkCard({ item }: { item: WorkItem }) {
         {item.summary}
       </p>
       <ul className="mt-5 flex flex-wrap gap-2">
+        {item.excellent ? <ExcellentProjectBadge /> : null}
         {item.tags.map((tag) => (
           <li
             key={tag}
@@ -337,7 +534,7 @@ function WorkCard({ item }: { item: WorkItem }) {
   );
 
   const cardClass =
-    "group flex h-full scroll-mt-28 flex-col rounded-2xl border border-black/10 bg-white p-8 transition-colors hover:border-accent/40 hover:bg-neutral-50";
+    "group flex h-full scroll-mt-28 flex-col rounded-2xl border border-black/10 bg-white p-8 transition-colors hover:border-accent/40 hover:bg-neutral-50 focus:outline-none focus-visible:outline-none";
 
   if (item.href) {
     if (isExternalHref(item.href)) {
@@ -354,7 +551,7 @@ function WorkCard({ item }: { item: WorkItem }) {
       );
     }
     return (
-      <Link id={item.id} href={item.href} className={cardClass}>
+      <Link href={item.href} className={cardClass} id={item.id}>
         {inner}
       </Link>
     );
@@ -370,16 +567,6 @@ function WorkCard({ item }: { item: WorkItem }) {
 export default function WorksPage() {
   return (
     <div className="relative min-h-screen overflow-x-hidden bg-white text-neutral-900">
-      <div
-        className="pointer-events-none fixed inset-0 opacity-[0.04]"
-        style={{
-          backgroundImage:
-            "linear-gradient(#000 1px, transparent 1px), linear-gradient(90deg, #000 1px, transparent 1px)",
-          backgroundSize: "64px 64px",
-        }}
-        aria-hidden
-      />
-
       <header className="fixed top-0 z-50 w-full border-b border-black/10 bg-white/80 backdrop-blur-md">
         <div className="mx-auto flex h-16 max-w-5xl items-center justify-between px-6">
           <Link
@@ -400,6 +587,55 @@ export default function WorksPage() {
       <main className="relative mx-auto max-w-5xl px-6 pt-32 pb-24">
         <p className="section-label mb-6 text-accent">About Me</p>
         <div className="h-px w-12 bg-accent" aria-hidden />
+
+        <div className="mt-10">
+          <h1 className="flex max-w-full flex-wrap items-baseline gap-x-3 gap-y-1 leading-none">
+            <span className="text-[clamp(2rem,10vw,3.25rem)] font-extrabold tracking-[0.06em] text-black">
+              DASOM KIM
+            </span>
+            <Link
+              href="/works/essay"
+              className="text-xs font-normal tracking-wide text-neutral-400 transition-colors hover:text-accent sm:text-sm"
+            >
+              [more..]
+            </Link>
+          </h1>
+          <p className="mt-4 text-[0.9375rem] leading-[1.85] text-neutral-600">
+            {CREDENTIALS_LINE}
+          </p>
+          <p className="mt-2 text-[0.9375rem] leading-[1.85] text-neutral-500">
+            Data Analyst · PM · AI Engineer · LLM
+          </p>
+        </div>
+
+        <div className="mt-8">
+          <p className="section-label mb-3 text-neutral-400">Download</p>
+          <div className="flex flex-wrap gap-3">
+            {DOWNLOADS.map((item) => (
+              <a
+                key={item.id}
+                href={item.href}
+                download={item.downloadName}
+                className="group inline-flex min-w-[140px] items-center justify-between gap-4 rounded-xl border border-black/10 bg-white px-4 py-3 transition-colors hover:border-accent/40 hover:bg-neutral-50"
+              >
+                <div>
+                  <p className="text-[11px] font-bold tracking-wide text-accent uppercase">
+                    {item.title}
+                  </p>
+                  <p className="mt-0.5 text-[11px] text-neutral-500">
+                    {item.format}
+                  </p>
+                </div>
+                <span
+                  className="text-xs text-neutral-400 transition-all group-hover:translate-x-0.5 group-hover:text-accent"
+                  aria-hidden
+                >
+                  ↓
+                </span>
+              </a>
+            ))}
+          </div>
+        </div>
 
         <div className="mt-10 flex flex-wrap gap-4">
           <a
@@ -427,26 +663,25 @@ export default function WorksPage() {
           </h2>
 
           <h3 className="section-label mb-6 text-neutral-400">AI PoC</h3>
-          <p className="mb-10 max-w-lg text-[0.9375rem] leading-[1.85] text-neutral-500">
-            2024 — 2026 · LLM / RAG / Agent 기반 PoC 8건
-          </p>
+          <div className="mb-10 max-w-lg space-y-2 text-[0.9375rem] leading-[1.85] text-neutral-500">
+            <p>2024 — 2026 · LLM / RAG / Agent 기반 PoC 8건</p>
+            <p>
+              기업체(MS, KT, LG 등) 인력참여 평가{" "}
+              <span className="font-medium text-accent underline decoration-accent underline-offset-2">
+                우수상 3회 수상
+              </span>
+            </p>
+          </div>
           <div className="grid gap-4 sm:grid-cols-2">
             {AI_POC_WORKS.map((item) => (
               <WorkCard key={item.id} item={item} />
             ))}
           </div>
 
-          <h3 className="section-label mb-6 mt-20 text-neutral-400">
+          <h3 className="section-label mb-10 mt-20 text-neutral-400">
             Data &amp; Analytics
           </h3>
-          <p className="mb-10 max-w-lg text-[0.9375rem] leading-[1.85] text-neutral-500">
-            데이터 분석 · 플랫폼 구축 · 상품 출시 경험
-          </p>
-          <div className="grid gap-4 sm:grid-cols-2">
-            {DATA_WORKS.map((item) => (
-              <WorkCard key={item.id} item={item} />
-            ))}
-          </div>
+          <DataExperienceList />
         </section>
 
         {/* Education & Credentials */}
@@ -551,23 +786,44 @@ export default function WorksPage() {
           <h3 className="section-label mb-6 mt-16 text-neutral-400">수상</h3>
           <ul className="divide-y divide-black/10 border-y border-black/10">
             {ACHIEVEMENTS.map((item) => (
-              <li key={item.id} className="py-8">
-                <div className="flex flex-wrap items-center gap-3">
-                  <span className="border border-accent/25 px-3 py-1 text-[11px] font-bold text-accent">
-                    {item.category}
-                  </span>
-                  {item.period ? (
-                    <time className="text-xs text-neutral-400">
-                      {item.period}
-                    </time>
-                  ) : null}
+              <li
+                key={item.id}
+                className="grid gap-4 py-8 sm:grid-cols-[1fr_auto] sm:items-start sm:gap-8"
+              >
+                <div>
+                  <div className="flex flex-wrap items-center gap-3">
+                    <span className="border border-accent/25 px-3 py-1 text-[11px] font-bold text-accent">
+                      {item.category}
+                    </span>
+                    {item.period ? (
+                      <time className="text-xs text-neutral-400">
+                        {item.period}
+                      </time>
+                    ) : null}
+                  </div>
+                  <h4 className="mt-4 text-[0.9375rem] font-bold leading-relaxed text-black">
+                    {item.title}
+                  </h4>
+                  <p className="mt-2 text-[0.9375rem] leading-[1.85] text-neutral-500">
+                    {item.detail}
+                  </p>
                 </div>
-                <h4 className="mt-4 text-[0.9375rem] font-bold leading-relaxed text-black">
-                  {item.title}
-                </h4>
-                <p className="mt-2 text-[0.9375rem] leading-[1.85] text-neutral-500">
-                  {item.detail}
-                </p>
+                {item.href ? (
+                  <a
+                    href={item.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="more-cta sm:ml-auto"
+                  >
+                    <span>more</span>
+                    <span aria-hidden>→</span>
+                  </a>
+                ) : (
+                  <span className="more-cta sm:ml-auto">
+                    <span>more</span>
+                    <span aria-hidden>→</span>
+                  </span>
+                )}
               </li>
             ))}
           </ul>

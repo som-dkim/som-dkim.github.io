@@ -50,6 +50,13 @@ body {
     letter-spacing: 0.08em;
   }
 
+  /* About Me: 이름 너비 ≈ 학위 줄 끝(Statistics) */
+  .about-name-fit {
+    display: block;
+    width: 100%;
+    font-size: clamp(1.75rem, calc(100cqi / 8.2), 3.25rem);
+  }
+
   .highlight-soft {
     color: var(--accent-soft);
     font-weight: 500;
@@ -81,4 +88,5 @@ body {
   .more-cta span[aria-hidden] {
     transition: transform 0.2s ease;
   }
+
 }
