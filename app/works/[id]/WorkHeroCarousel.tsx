@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useCallback, useEffect, useState } from "react";
 import type { WorkDetailHero } from "@/lib/works/details";
 
@@ -45,32 +46,34 @@ export function WorkHeroCarousel({ slides, caption }: WorkHeroCarouselProps) {
 
   return (
     <figure className="mt-10">
-      <button
-        type="button"
-        onClick={() => setLightboxOpen(true)}
-        className="group relative block w-full cursor-zoom-in overflow-hidden rounded-2xl border border-black/10 bg-neutral-50 text-left shadow-sm transition-colors hover:border-accent/30"
-        aria-label={`${slide.alt} — 클릭하여 확대`}
-      >
+      <div className="group relative w-full overflow-hidden rounded-2xl border border-black/10 bg-neutral-50 shadow-sm transition-colors hover:border-accent/30">
+        <button
+          type="button"
+          onClick={() => setLightboxOpen(true)}
+          className="absolute inset-0 z-0 cursor-zoom-in"
+          aria-label={`${slide.alt} — 클릭하여 확대`}
+        />
+
         <div
-          className="flex transition-transform duration-300 ease-out"
+          className="pointer-events-none flex transition-transform duration-300 ease-out"
           style={{ transform: `translateX(-${index * 100}%)` }}
         >
           {slides.map((item, i) => (
-            <img
+            <Image
               key={`${item.src}-${i}`}
               src={item.src}
               alt={item.alt}
               width={1200}
               height={675}
-              className="pointer-events-none h-auto max-h-[min(70vh,36rem)] w-full shrink-0 object-contain p-2 sm:p-3"
-              loading={item === slide ? "eager" : "lazy"}
-              decoding="async"
+              unoptimized
+              className="h-auto max-h-[min(70vh,36rem)] w-full shrink-0 object-contain p-2 sm:p-3"
+              priority={i === index}
               draggable={false}
             />
           ))}
         </div>
 
-        <span className="absolute right-3 top-3 rounded-full bg-black/50 px-2.5 py-1 text-[10px] tracking-wide text-white opacity-0 transition-opacity group-hover:opacity-100">
+        <span className="pointer-events-none absolute right-3 top-3 rounded-full bg-black/50 px-2.5 py-1 text-[10px] tracking-wide text-white opacity-0 transition-opacity group-hover:opacity-100">
           클릭하여 확대
         </span>
 
@@ -78,22 +81,16 @@ export function WorkHeroCarousel({ slides, caption }: WorkHeroCarouselProps) {
           <>
             <button
               type="button"
-              onClick={(event) => {
-                event.stopPropagation();
-                goTo(index - 1);
-              }}
-              className="absolute top-1/2 left-3 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full border border-black/10 bg-white/90 text-lg text-neutral-700 shadow-sm transition-colors hover:border-accent/40 hover:text-accent"
+              onClick={() => goTo(index - 1)}
+              className="absolute top-1/2 left-3 z-10 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full border border-black/10 bg-white/90 text-lg text-neutral-700 shadow-sm transition-colors hover:border-accent/40 hover:text-accent"
               aria-label="이전 이미지"
             >
               ‹
             </button>
             <button
               type="button"
-              onClick={(event) => {
-                event.stopPropagation();
-                goTo(index + 1);
-              }}
-              className="absolute top-1/2 right-3 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full border border-black/10 bg-white/90 text-lg text-neutral-700 shadow-sm transition-colors hover:border-accent/40 hover:text-accent"
+              onClick={() => goTo(index + 1)}
+              className="absolute top-1/2 right-3 z-10 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full border border-black/10 bg-white/90 text-lg text-neutral-700 shadow-sm transition-colors hover:border-accent/40 hover:text-accent"
               aria-label="다음 이미지"
             >
               ›
@@ -103,7 +100,7 @@ export function WorkHeroCarousel({ slides, caption }: WorkHeroCarouselProps) {
             </p>
           </>
         ) : null}
-      </button>
+      </div>
 
       {total > 1 ? (
         <div
@@ -176,10 +173,13 @@ export function WorkHeroCarousel({ slides, caption }: WorkHeroCarouselProps) {
                 </>
               ) : null}
 
-              <img
+              <Image
                 src={slide.src}
                 alt={slide.alt}
-                className="max-h-[min(84vh,43.2rem)] w-full object-contain"
+                width={1200}
+                height={675}
+                unoptimized
+                className="max-h-[min(84vh,43.2rem)] h-auto w-full object-contain"
                 draggable={false}
               />
             </div>

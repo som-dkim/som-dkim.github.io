@@ -3,7 +3,7 @@ id: hae02
 listAnchorId: data-hyundai
 company: 현대오토에버
 department: 빅데이터실 / 책임
-period: "2020.06 — 2022.05"
+period: "2020.08 — 2020.10"
 title: 고객 세그먼테이션 분석 고도화
 summary: 자동차 행동 데이터 기반 GMM·DBSCAN·K-means 클러스터링으로 고객군 분류·마켓 타겟층 수립, PM·산출물·코드 최적화를 수행한 프로젝트
 tags:
@@ -15,7 +15,8 @@ galleryId: hae02
 
 ## Overview
 
-자동차 행동 데이터를 활용해 GMM·DBSCAN·K-means 등 클러스터링 기법으로 고객군을 분류하고 마켓 타겟층을 수립했으며, 프로젝트 관리·산출물 작성·분석 코드 최적화를 담당한 프로젝트입니다.
+자동차 행동 데이터를 활용해 GMM·DBSCAN·K-means 등 클러스터링 기법으로 고객군을 분류하고 마켓 타겟층을 수립했습니다. 
+PM으로 협력사 운영 관리와 기술 내재화, 프로젝트 전 주기 관리를 담당했습니다. 
 
 ## Context
 
@@ -27,7 +28,7 @@ galleryId: hae02
 
 - 행동 유형 세분화·타겟 분류 분석 수행
 - GMM·DBSCAN·K-means 등 모델 실험·비교·선정
-- 프로젝트 일정·품질 관리, 산출물 작성, 코드 최적화
+- 프로젝트 일정·품질 관리, 산출물 작성, 코드 내재화 및 최적화
 
 ## Data & Analysis
 

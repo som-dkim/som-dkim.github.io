@@ -4,12 +4,26 @@ import { notFound } from "next/navigation";
 import {
   getAllDataWorkDetailIds,
   getDataWorkDetail,
+  type DataImpactDownload,
 } from "@/lib/works/data-details";
 import { WorkHeroCarousel } from "../../[id]/WorkHeroCarousel";
 
 type PageProps = {
   params: Promise<{ id: string }>;
 };
+
+function renderInlineMarkdown(text: string) {
+  return text.split(/(\*\*[^*]+\*\*)/g).map((part, index) => {
+    if (part.startsWith("**") && part.endsWith("**") && part.length > 4) {
+      return (
+        <strong key={index} className="font-bold text-neutral-900">
+          {part.slice(2, -2)}
+        </strong>
+      );
+    }
+    return <span key={index}>{part}</span>;
+  });
+}
 
 export function generateStaticParams() {
   return getAllDataWorkDetailIds().map((id) => ({ id }));
@@ -25,6 +39,52 @@ export async function generateMetadata({
     title: `${work.title} | Dasom Kim`,
     description: work.summary,
   };
+}
+
+function ImpactItem({
+  text,
+  download,
+}: {
+  text: string;
+  download?: DataImpactDownload;
+}) {
+  const showDownload =
+    download && text.includes(download.match);
+
+  return (
+    <li className="flex gap-3 text-[0.9375rem] leading-[1.85] text-neutral-700">
+      <span
+        className="mt-2.5 h-1 w-1 shrink-0 rounded-full bg-accent"
+        aria-hidden
+      />
+      <span className="flex flex-wrap items-center gap-x-2 gap-y-1">
+        <span>{renderInlineMarkdown(text)}</span>
+        {showDownload ? (
+          <a
+            href={download.href}
+            download={download.downloadName}
+            target={
+              download.href.startsWith("http") ? "_blank" : undefined
+            }
+            rel={
+              download.href.startsWith("http")
+                ? "noopener noreferrer"
+                : undefined
+            }
+            className="inline-flex items-center gap-1 text-[0.8125rem] font-medium tracking-wide text-accent underline decoration-accent/40 underline-offset-2 transition-colors hover:text-accent-dark hover:decoration-accent"
+          >
+            <span aria-hidden>
+              {download.downloadName ? "↓" : "→"}
+            </span>
+            <span>
+              {download.label ??
+                (download.downloadName ? "다운로드" : "링크")}
+            </span>
+          </a>
+        ) : null}
+      </span>
+    </li>
+  );
 }
 
 function PageShell({ children }: { children: React.ReactNode }) {
@@ -107,7 +167,7 @@ export default async function DataWorkDetailPage({ params }: PageProps) {
           <span className="text-neutral-400">Overview</span>
         </h2>
         <p className="text-[0.9375rem] leading-[1.9] text-neutral-700">
-          {work.overview}
+          {renderInlineMarkdown(work.overview)}
         </p>
 
         {work.gallery && work.gallery.length > 0 ? (
@@ -128,18 +188,26 @@ export default async function DataWorkDetailPage({ params }: PageProps) {
             <span className="text-neutral-400"> — {section.title}</span>
           </h2>
           <ul className="space-y-4">
-            {section.items.map((item) => (
-              <li
-                key={item}
-                className="flex gap-3 text-[0.9375rem] leading-[1.85] text-neutral-700"
-              >
-                <span
-                  className="mt-2.5 h-1 w-1 shrink-0 rounded-full bg-accent"
-                  aria-hidden
+            {section.items.map((item) =>
+              section.title === "Impact" ? (
+                <ImpactItem
+                  key={item}
+                  text={item}
+                  download={work.impactDownload}
                 />
-                <span>{item}</span>
-              </li>
-            ))}
+              ) : (
+                <li
+                  key={item}
+                  className="flex gap-3 text-[0.9375rem] leading-[1.85] text-neutral-700"
+                >
+                  <span
+                    className="mt-2.5 h-1 w-1 shrink-0 rounded-full bg-accent"
+                    aria-hidden
+                  />
+                  <span>{renderInlineMarkdown(item)}</span>
+                </li>
+              ),
+            )}
           </ul>
         </section>
       ))}

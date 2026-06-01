@@ -16,6 +16,10 @@ tags:
   - Tableau
 galleryId: data-penta
 galleryCaption: 분석·지도 산출물
+impactDownload:
+  match: 우수사례집
+  href: https://www.korea.kr/briefing/pressReleaseView.do?newsId=156250415
+  label: 보도자료
 ---
 
 ## Overview

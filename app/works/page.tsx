@@ -23,6 +23,7 @@ type EducationResearch = {
   title: string;
   detail: string;
   period?: string;
+  href?: string;
 };
 
 type EducationItem = {
@@ -267,6 +268,7 @@ const EDUCATION: EducationItem[] = [
         title: "텍스트 분석을 활용한 과학기술이슈 여론 분석 방법론",
         detail:
           "김다솜, et al., 한국IT서비스학회지, Vol. 14, No. 3, pp. 33-48, 2015",
+        href: "https://news.kbs.co.kr/news/pc/view/view.do?ncd=3150934&ref=A",
       },
       {
         category: "KCI 논문",
@@ -452,6 +454,11 @@ function DataExperienceList() {
               </p>
               <p className="mt-2 text-[0.9375rem] leading-[1.75] text-neutral-600">
                 {group.focus}
+                {group.id === "data-hyundai" || group.id === "data-kakao" ? (
+                  <span className="ml-1 text-[0.8125rem] text-neutral-400">
+                    (대외비로 인해 삽화는 AI로 대체하였습니다)
+                  </span>
+                ) : null}
               </p>
             </div>
           </div>
@@ -751,9 +758,21 @@ export default function WorksPage() {
                               </time>
                             ) : null}
                           </div>
-                          <p className="mt-3 text-[0.9375rem] font-bold leading-relaxed text-neutral-800">
-                            {work.title}
-                          </p>
+                          <div className="mt-3 flex flex-wrap items-center gap-x-2 gap-y-1">
+                            <p className="text-[0.9375rem] font-bold leading-relaxed text-neutral-800">
+                              {work.title}
+                            </p>
+                            {work.href ? (
+                              <a
+                                href={work.href}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-[0.75rem] font-medium tracking-wide text-accent underline decoration-accent/40 underline-offset-2 transition-colors hover:text-accent-dark hover:decoration-accent"
+                              >
+                                보도자료 →
+                              </a>
+                            ) : null}
+                          </div>
                           <p className="mt-1 text-[0.875rem] leading-[1.85] text-neutral-500">
                             {work.detail}
                           </p>

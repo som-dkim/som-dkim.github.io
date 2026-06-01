@@ -15,29 +15,29 @@ const CAREER = [
     href: "/works#poc-01",
   },
   {
-    period: "2023 — 2024",
+    period: "",
     description: "GAP YEAR",
-    href: null,
+    href: "/works/gap-year",
   },
   {
     period: "2022 — 2023",
     description: "카카오뱅크, 대규모 인입고객 트랜드 분석",
-    href: null,
+    href: "/works#data-kakao",
   },
   {
     period: "2020 — 2022",
     description: "현대오토에버, 그룹사 데이터 구축 PM / SM",
-    href: null,
+    href: "/works#data-hyundai",
   },
   {
     period: "2018 — 2020",
     description: "신용평가사, 비재무 데이터 분석플랫폼 상품출시",
-    href: null,
+    href: "/works#data-ecredible",
   },
   {
     period: "2017 — 2018",
     description: "대구광역시 전기차충전소 입지 인프라 선정",
-    href: null,
+    href: "/works#data-penta",
   },
 ];
 
@@ -269,9 +269,13 @@ export default function Home() {
                 key={item.period + item.description}
                 className="group grid gap-4 py-8 sm:grid-cols-[140px_1fr_auto] sm:items-center sm:gap-8"
               >
-                <time className="text-xs tracking-wide text-neutral-500 uppercase">
-                  {formatPeriod(item.period)}
-                </time>
+                {item.period ? (
+                  <time className="text-xs tracking-wide text-neutral-500 uppercase">
+                    {formatPeriod(item.period)}
+                  </time>
+                ) : (
+                  <span className="hidden sm:block" aria-hidden />
+                )}
                 <p className="text-[0.9375rem] leading-[1.85] text-neutral-800">
                   <span className="mr-2 text-neutral-300">—</span>
                   {highlightDescription(item.description)}

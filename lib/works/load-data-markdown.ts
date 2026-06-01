@@ -1,7 +1,12 @@
 import fs from "node:fs";
 import path from "node:path";
 import matter from "gray-matter";
-import type { DataDetailMedia, DataDetailSection, DataWorkDetail } from "./data-details";
+import type {
+  DataDetailMedia,
+  DataDetailSection,
+  DataImpactDownload,
+  DataWorkDetail,
+} from "./data-details";
 
 const CONTENT_DIR = path.join(process.cwd(), "content/works/data");
 
@@ -105,6 +110,30 @@ function parseMarkdownFile(filePath: string): DataWorkDetail | null {
   const galleryId =
     typeof data.galleryId === "string" ? data.galleryId : `data-${id}`;
 
+  let impactDownload: DataImpactDownload | undefined;
+  const rawImpactDownload = data.impactDownload;
+  if (
+    rawImpactDownload &&
+    typeof rawImpactDownload === "object" &&
+    !Array.isArray(rawImpactDownload)
+  ) {
+    const entry = rawImpactDownload as Record<string, unknown>;
+    if (typeof entry.match === "string" && typeof entry.href === "string") {
+      impactDownload = {
+        match: entry.match,
+        href: entry.href,
+        label:
+          typeof entry.label === "string" && entry.label.trim()
+            ? entry.label.trim()
+            : undefined,
+        downloadName:
+          typeof entry.downloadName === "string" && entry.downloadName.trim()
+            ? entry.downloadName.trim()
+            : undefined,
+      };
+    }
+  }
+
   return {
     id,
     listAnchorId: String(data.listAnchorId ?? `data-${id}`),
@@ -123,6 +152,7 @@ function parseMarkdownFile(filePath: string): DataWorkDetail | null {
         : undefined,
     overview,
     sections,
+    impactDownload,
   };
 }
 
