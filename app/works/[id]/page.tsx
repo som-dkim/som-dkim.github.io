@@ -101,7 +101,7 @@ export default async function WorkDetailPage({ params }: PageProps) {
         {work.gallery && work.gallery.length > 0 ? (
           <WorkHeroCarousel
             slides={work.gallery}
-            caption="데모 화면"
+            caption={work.galleryCaption ?? "데모 화면"}
           />
         ) : work.hero ? (
           <WorkHeroCarousel slides={[work.hero]} caption={work.hero.caption} />

@@ -26,12 +26,15 @@ function LectureBody({ body }: { body: string | string[] }) {
   );
 }
 
-function LectureCard({ item }: { item: GapYearLectureEntry }) {
-  const content = (
-    <>
+function LectureImages({ item }: { item: GapYearLectureEntry }) {
+  const imgs = item.images ?? (item.image ? [item.image] : []);
+  if (imgs.length === 0) return null;
+
+  if (imgs.length === 1) {
+    return (
       <div className="relative aspect-[4/3] w-full shrink-0 overflow-hidden rounded-xl border border-black/10 bg-neutral-100 sm:w-[220px] lg:w-[260px]">
         <Image
-          src={item.image}
+          src={imgs[0]}
           alt={item.imageAlt}
           fill
           unoptimized
@@ -39,6 +42,51 @@ function LectureCard({ item }: { item: GapYearLectureEntry }) {
           className="object-cover object-center"
         />
       </div>
+    );
+  }
+
+  return (
+    <div className="w-full shrink-0 sm:w-[220px] lg:w-[260px]">
+      <div className="relative aspect-[4/3] w-full overflow-hidden rounded-xl border border-black/10 bg-neutral-100">
+        <Image
+          src={imgs[0]}
+          alt={`${item.imageAlt} 1`}
+          fill
+          unoptimized
+          sizes="(max-width: 640px) 100vw, 260px"
+          className="object-cover object-center"
+        />
+      </div>
+      {imgs.length > 1 ? (
+        <div
+          className="mt-2 grid gap-2"
+          style={{ gridTemplateColumns: `repeat(${imgs.length - 1}, 1fr)` }}
+        >
+          {imgs.slice(1).map((src, i) => (
+            <div
+              key={src}
+              className="relative aspect-[4/3] overflow-hidden rounded-lg border border-black/10 bg-neutral-100"
+            >
+              <Image
+                src={src}
+                alt={`${item.imageAlt} ${i + 2}`}
+                fill
+                unoptimized
+                sizes="120px"
+                className="object-cover object-center"
+              />
+            </div>
+          ))}
+        </div>
+      ) : null}
+    </div>
+  );
+}
+
+function LectureCard({ item }: { item: GapYearLectureEntry }) {
+  const content = (
+    <>
+      <LectureImages item={item} />
 
       <div className="min-w-0 flex-1">
         <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">

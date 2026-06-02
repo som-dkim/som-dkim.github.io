@@ -11,6 +11,7 @@ tags:
   - SQL (Hive)
   - Tableau
 galleryId: kkb02
+galleryCaption: Excel 지표 운영 및 검수
 ---
 
 ## Overview

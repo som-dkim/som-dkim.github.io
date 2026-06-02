@@ -15,6 +15,7 @@ tags:
   - ETL
   - Tableau
 galleryId: kkb01
+galleryCaption: Data 파이프라인·마트 개발·분석, Tableau 대시보드 개발
 ---
 
 ## Overview
@@ -36,7 +37,7 @@ galleryId: kkb01
 
 ## Data & Analysis
 
-- SQL 기반 데이터마트·배치 개발로 분석용 데이터 파이프라인 구축 
+- 데이터마트·배치 개발로 분석용 데이터 파이프라인 구축 
 - NER/TF-IDF/POS Tagging 등 텍스트 데이터 분석 수행 
 - 챗봇 인입데이터 자동분류 Classificaiton 수행(acc 0.93)
 - 키워드·동시출현 네트워크 구조 이용 급등 이슈 파악 도출 

@@ -24,6 +24,7 @@ type EducationResearch = {
   detail: string;
   period?: string;
   href?: string;
+  linkLabel?: string;
 };
 
 type EducationItem = {
@@ -40,79 +41,79 @@ type EducationItem = {
 
 const AI_POC_WORKS: WorkItem[] = [
   {
-    id: "poc-01",
+    id: "poc-08",
     period: "2026",
     title: "웹소설/시나리오 현지화 리라이팅 시스템",
     summary:
       "원작 서사·문체 유지와 타겟 언어·문화권에 맞춘 웹소설·시나리오 리라이팅.",
     tags: ["LLM", "PoC"],
-    href: "/works/poc-01",
+    href: "/works/poc-08",
   },
   {
-    id: "poc-02",
+    id: "poc-07",
     period: "2026",
     title: "외국인 관광객 여행장소 위치추천",
     summary:
       "여행자 선호·동선·주변 정보를 결합한 맞춤형 관광지·코스 추천.",
     tags: ["RAG", "PoC"],
     excellent: true,
-    href: "/works/poc-02",
+    href: "/works/poc-07",
   },
   {
-    id: "poc-03",
+    id: "poc-06",
     period: "2026",
-    title: "KMS 기반 실시간 검색 시스템",
+    title: "카드사 콜센터 실시간 상담 지원 시스템",
     summary:
-      "사내 KMS 연동 기반 질의 의도 분류, 문서 실시간 검색·요약·응답.",
-    tags: ["Agent", "PoC"],
+      "실시간 STT로 고객 인입 의도를 파악하고, 상담사에게 근거 문서를 즉시 제공·후처리 자동 작성.",
+    tags: ["Agent", "RAG", "PoC"],
     excellent: true,
-    href: "/works/poc-03",
+    href: "/works/poc-06",
   },
   {
-    id: "poc-04",
+    id: "poc-05",
     period: "2025",
     title: "야구 중계 해설위원",
     summary:
       "경기 상황·선수·통계 반영 LLM 해설 멘트 실시간 생성.",
     tags: ["LLM", "PoC"],
-    href: "/works/poc-04",
+    href: "/works/poc-05",
   },
   {
-    id: "poc-05",
+    id: "poc-04",
     period: "2025",
     title: "AI 인플루언서 페르소나 생성 · 연애 상담 스트리머",
     summary:
       "스트리머 페르소나·말투·상담 시나리오 설계와 대화 일관성 유지.",
     tags: ["LLM", "Persona", "PoC"],
-    href: "/works/poc-05",
+    href: "/works/poc-04",
   },
   {
-    id: "poc-06",
+    id: "poc-03",
     period: "2025",
-    title: "고객 챗봇 상담 시스템",
+    title: "TinkerBell — 솔로프리너 AI 어시스턴트",
     summary:
-      "고객 문의 분류, FAQ·정책 기반 답변, 상담원 에스컬레이션 연계.",
-    tags: ["LLM", "PoC"],
-    href: "/works/poc-06",
+      "LangGraph 멀티에이전트로 1인 창업자의 기획·마케팅·일정·고객응대를 통합 보조하는 AI 플랫폼.",
+    tags: ["LangGraph", "RAG", "Multi-Agent", "PoC"],
+    href: "/works/poc-03",
   },
   {
-    id: "poc-07",
+    id: "poc-02",
     period: "2025",
     title: "특허 초안 작성 시스템",
     summary:
       "발명 요지·기술 포인트 입력 기반 특허 명세서 초안 구조와 문장 생성.",
     tags: ["LLM", "PoC"],
     excellent: true,
-    href: "/works/poc-07",
+    href: "/works/poc-02",
   },
   {
-    id: "poc-08",
+    id: "poc-01",
     period: "2024",
     title: "AI 기반 모의 면접 시스템",
     summary:
       "직무·경력 맞춤 면접 질문 생성, 답변 분석, 개선 피드백 제공.",
     tags: ["LLM", "PoC"],
-    href: "/works/poc-08",
+    href: "/works/poc-01",
   },
 ];
 
@@ -269,12 +270,15 @@ const EDUCATION: EducationItem[] = [
         detail:
           "김다솜, et al., 한국IT서비스학회지, Vol. 14, No. 3, pp. 33-48, 2015",
         href: "https://news.kbs.co.kr/news/pc/view/view.do?ncd=3150934&ref=A",
+        linkLabel: "보도자료",
       },
       {
         category: "KCI 논문",
         title: "텍스트 분석을 통한 이종 매체 카테고리 다중 매핑 방법론",
         detail:
           "김다솜, 김남규, 지능정보연구, Vol. 22, No. 4, pp. 193-215, 2016",
+        href: "https://www.kci.go.kr/kciportal/ci/sereArticleSearch/ciSereArtiView.kci?sereArticleSearchBean.artiId=ART002182067",
+        linkLabel: "논문 보기",
       },
     ],
   },
@@ -769,7 +773,7 @@ export default function WorksPage() {
                                 rel="noopener noreferrer"
                                 className="text-[0.75rem] font-medium tracking-wide text-accent underline decoration-accent/40 underline-offset-2 transition-colors hover:text-accent-dark hover:decoration-accent"
                               >
-                                보도자료 →
+                                {work.linkLabel ?? "링크"} →
                               </a>
                             ) : null}
                           </div>

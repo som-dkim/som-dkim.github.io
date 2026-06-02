@@ -12,7 +12,7 @@ const CAREER = [
   {
     period: "2024 — Present",
     description: "SK 네트웍스 AI부트캠프 멘토링 참여 AI PoC 8건 수행중",
-    href: "/works#poc-01",
+    href: "/works#poc-08",
   },
   {
     period: "",
